@@ -2,12 +2,13 @@ package main
 
 import (
 	"archive/zip"
-	"github.com/termie/go-shutil"
 	"io"
 	"net/http"
 	"os"
 	"path"
 	"path/filepath"
+
+	"github.com/termie/go-shutil"
 )
 
 func unzip(archive, target string) (err error) {
@@ -47,6 +48,7 @@ func unzip(archive, target string) (err error) {
 	return nil
 }
 
+// DownloadFiles downloads gitignore zip and inflates to the data path.
 func DownloadFiles(url string, dataPath string) (err error) {
 	archivePath := path.Join("/tmp", "master.zip")
 
@@ -84,6 +86,7 @@ func DownloadFiles(url string, dataPath string) (err error) {
 	return nil
 }
 
+// RemoveContents cleans the target directory.
 func RemoveContents(dir string) (err error) {
 	if _, err := os.Stat(dir); os.IsNotExist(err) {
 		return nil
